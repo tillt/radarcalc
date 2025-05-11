@@ -12,9 +12,9 @@ The radar refresh period is 6hours, that is a fixed parameter. The rest is varia
 https://github.com/tillt/radarcalc/blob/main/site/RadarTaskCount.png
 1. Check your current radar period start — when does the radar get new tasks? [Rp]
    ![Radar period starts in](https://github.com/tillt/radarcalc/blob/main/site/TimeLeftUntilStart.png)
-2. Check the amount in the queue — how many radar tasks to you currently have in your queue? [q(t1)]
+2. Check the amount in the queue — how many radar tasks do you currently have in your queue? [q[t1]]
    ![Radar tasks queued](https://github.com/tillt/radarcalc/blob/main/site/RadarTaskQueueCount.png)
-3. Check the amount on the screen — how many radar tasks to you currently have visible? [v(t1)]
+3. Check the amount on the screen — how many radar tasks do you currently have visible? [v[t1]]
    ![Radar tasks visible](https://github.com/tillt/radarcalc/blob/main/site/RadarTaskVisibleCount.png)
 4. Check the amount of radar tasks you can display at a time? [V]
    ![Radar visible maximum](https://github.com/tillt/radarcalc/blob/main/site/RadarVisibleMax.png)
@@ -47,32 +47,35 @@ The rest is math - this is what this all boils down to, if I am not mistaken (th
 
 In this example; tomorrow morning in the window starting 9:33 [tx] we want V+Q tasks to be available to us.
 
-* tomorrow 9:33 -> c(tx) = (V + Q) - N
-* tomorrow 3:33 -> c(tx-1) = (V + Q) - 2*N
-* today 21:33   -> c(tx-2) = (V + Q) - 3*N
-* today 15:33   -> c(tx-3) = (V + Q) - 4*N
-* => x = 3
+* tomorrow 9:33 -> c[tx] = (V + Q) - N
+* tomorrow 3:33 -> c[tx-1] = (V + Q) - 2*N
+* today 21:33   -> c[tx-2] = (V + Q) - 3*N
+* today 15:33   -> c[tx-3] = (V + Q) - 4*N
+* => x = 4
 
-Now plugging in some real data to play it all through. For simplification, we start with the calculation of a c(t1) at the next phase.
+Now plugging in some real data to play it all through.
 
 * Q = 40 (queue size)
 * N = 11 (added per cycle)
 * V = 11 (visible at a time)
-* q(t1) = 10 (currently queued)
-* v(t1) = 11 (currently visible)
-* => c(t1) = q(t1) + v(t1) = 21 (currently available)
+* q[t0] = 10 (currently queued)
+* v[t0] = 11 (currently visible)
+* => **c[t0] = q[t0] + v[t0]** = 21 (currently available)
 * => V+Q = 51 (maximum amount possibly available)
-* => V+Q = c(t1) + x*N (the maximum amount possibly available should be happening in x phases from now with c(t1) available tasks)
-* => c(t1) = (V + Q) - x*N (we get x from our chosen window above)
-* => c(t1) = (40 + 11) - 4 * 11
-* => c(t1) = 7
+* => V+Q = c[t0] + x*N (the maximum amount should be happening in x phases)
+
+Now we can calculate the optimal setup for now, lets call it c[t0]'. c[t0] is what we see at the moment in contrast to c[t0]' which is what we want to see to make things fit perfectly well.
+
+* => **c[t0]' = (V + Q) - x*N** (we get x from our chosen window above)
+* => c[t0]' = (40 + 11) - 4 * 11
+* => c[t0]' = 7
 
 Lets validate that...
 
-* now 15:21 -> c(t0) = 21
-* today 15:33 -> c(t1) = 32
-* today 21:33 -> c(t2) = 43
-* tomorrow 03:33 -> c(t3) = 54
-* tomorrow 09:33 -> c(t4) = 65
+* now 15:21 -> c[t0] = 21
+* today 15:33 -> c[t1] = 32
+* today 21:33 -> c[t2] = 43
+* tomorrow 03:33 -> c[t3] = 54
+* tomorrow 09:33 -> c[t4] = 65
 * => I am 14 tasks over what I want them to be - I would waste tasks if I did not solve some before 9:33 tomorrow morning.
-* => Ideally, right now I work through all 11 visible tasks and get the queue size from 10 down to 7. Well, what I really want is visible amount of tasks plus queued amount of tasks is 7 [c(t1) = 7].
+* => Ideally, right now I work through all 11 visible tasks and get number of available tasks down to 7 [c[t0] = c[t0]' = 7].
