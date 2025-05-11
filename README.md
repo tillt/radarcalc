@@ -38,20 +38,22 @@ The total amount of radar tasks you can accumulate before you waste (stop accumu
 * the schedule for the next 24hours is 15:33, 21:33, 03:33, 09:33, 15:33
 
 ## Optimizing for VS and Arms Race
+
 Synchronize your VS radar tasks to the arms race. Many tasks need stamina, doing them within the drone-phase in the arms race is advisable.
 
 Assume the next day’s arms race drone-phase was starting at 12:00 (noon). You would want to start popping radar tasks not before that time. That means your favorite window for maximum radar tasks in the queue is the one between 9:33 and 15:33. At that time, your would want everything to be filled to the maximum. It does also mean that at 9:33 you should get the last N tasks to fill everything up. [tx]
 
 The rest is math - this is what this all boils down to, if I am not mistaken (there is a good chance I am!).
 
-In this example; tomorrow morning at 9:33 [tx] we want V+Q tasks to be available to us.
+In this example; tomorrow morning in the window starting 9:33 [tx] we want V+Q tasks to be available to us.
 
-* tomorrow 9:33 -> c(tx) = V+Q
-* tomorrow 3:33 -> c(tx-1) = (V+Q) - N
-* today 21:33 -> c(tx-2) = (V+Q) - 2N
-* today 15:33 -> c(tx-3) = (V+Q) - 3N
+* tomorrow 9:33 -> c(tx) = (V + Q) - N
+* tomorrow 3:33 -> c(tx-1) = (V + Q) - 2*N
+* today 21:33   -> c(tx-2) = (V + Q) - 3*N
+* today 15:33   -> c(tx-3) = (V + Q) - 4*N
+* => x = 3
 
-Now plugging in some real data to play it all through:
+Now plugging in some real data to play it all through. For simplification, we start with the calculation of a c(t1) at the next phase.
 
 * Q = 40 (queue size)
 * N = 11 (added per cycle)
@@ -60,13 +62,17 @@ Now plugging in some real data to play it all through:
 * v(t1) = 11 (currently visible)
 * => c(t1) = q(t1) + v(t1) = 21 (currently available)
 * => V+Q = 51 (maximum amount possibly available)
+* => V+Q = c(t1) + x*N (the maximum amount possibly available should be happening in x phases from now with c(t1) available tasks)
+* => c(t1) = (V + Q) - x*N (we get x from our chosen window above)
+* => c(t1) = (40 + 11) - 4 * 11
+* => c(t1) = 7
 
-That results into the following development:
+Lets validate that...
 
-* now 15:21 -> c(t1) = 21
-* today 15:33 -> c(t) = 32
-* today 21:33 -> c(t) = 43
-* tomorrow 03:33 -> c(t) = 54
-* tomorrow 09:33 -> c(t) = 65
+* now 15:21 -> c(t0) = 21
+* today 15:33 -> c(t1) = 32
+* today 21:33 -> c(t2) = 43
+* tomorrow 03:33 -> c(t3) = 54
+* tomorrow 09:33 -> c(t4) = 65
 * => I am 14 tasks over what I want them to be - I would waste tasks if I did not solve some before 9:33 tomorrow morning.
-* => Ideally, right now I work through all 11 visible tasks and get the queue size from 10 down to 7. Well, what I really want is visible amount of tasks plus queued amount of tasks is 7.
+* => Ideally, right now I work through all 11 visible tasks and get the queue size from 10 down to 7. Well, what I really want is visible amount of tasks plus queued amount of tasks is 7 [c(t1) = 7].
