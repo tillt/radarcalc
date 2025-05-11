@@ -9,18 +9,20 @@ The goal here is to start working on radar missions at around the time your tota
 
 The radar refresh period is 6hours, that is a fixed parameter. The rest is variable and thus this process needs your input.
 
+https://github.com/tillt/radarcalc/blob/main/site/RadarTaskCount.png
 1. Check your current radar period start — when does the radar get new tasks? [Rp]
-   <picture>
+   ![Radar period starts in](https://github.com/tillt/radarcalc/blob/main/site/TimeLeftUntilStart.png)
 2. Check the amount in the queue — how many radar tasks to you currently have in your queue? [q(t1)]
-   <picture>
+   ![Radar tasks queued](https://github.com/tillt/radarcalc/blob/main/site/RadarTaskQueueCount.png)
 3. Check the amount on the screen — how many radar tasks to you currently have visible? [v(t1)]
-   <picture>
+   ![Radar tasks visible](https://github.com/tillt/radarcalc/blob/main/site/RadarTaskVisibleCount.png)
 4. Check the amount of radar tasks you can display at a time? [V]
-   <picture>
+   ![Radar visible maximum](https://github.com/tillt/radarcalc/blob/main/site/RadarVibisleMax.png)
 5. Check your radar level and its current parameters — what is the number of tasks added per refresh? [N]
-   <picture>
+   ![Radar tasks per refresh](https://github.com/tillt/radarcalc/blob/main/site/TasksPerRefresh.png)
 6. Check your radar level and its current parameters — what is the maximum queue size? [Q]
-   <picture>
+   ![Radar queue size](https://github.com/tillt/radarcalc/blob/main/site/RadarQueueMax.png)
+
 
 The total amount of radar tasks you can accumulate before you waste (stop accumulating) is the number of tasks it can display at a time plus the number of tasks it can store in the queue. [V+Q].
 
