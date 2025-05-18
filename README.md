@@ -13,10 +13,9 @@ https://github.com/tillt/radarcalc/blob/main/site/RadarTaskCount.png
    ![Radar tasks queued](https://github.com/tillt/radarcalc/blob/main/site/RadarTaskQueueCount.png)
 3. Check the amount on the screen — how many radar tasks do you currently have visible? [v[t1]]
    ![Radar tasks visible](https://github.com/tillt/radarcalc/blob/main/site/RadarTaskVisibleCount.png)
-4. Check the amount of radar tasks you can display at a time? [V]
-   ![Radar visible maximum](https://github.com/tillt/radarcalc/blob/main/site/RadarVisibleMax.png)
-5. Check your radar level and its current parameters — what is the number of tasks added per refresh? [N]
+4. Check your radar level and its current parameters — what is the number of tasks added per refresh? [N]
    ![Radar tasks per refresh](https://github.com/tillt/radarcalc/blob/main/site/TasksPerRefresh.png)
+5. The amount of radar tasks you can display at a time appears to be identical with the amount of tasks you get per refresh [V=N]? [V]
 6. Check your radar level and its current parameters — what is the maximum queue size? [Q]
    ![Radar queue size](https://github.com/tillt/radarcalc/blob/main/site/RadarQueueMax.png)
 
