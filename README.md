@@ -1,13 +1,10 @@
 # Sniping Radar Task Scheduler
-Last War radar task optimizing scheduler
 
-We do not want the game to dictate our schedule, so we plan for a well fitting one.
-
-The goal here is to start working on radar missions at around the time your total amount of tasks on the radar becomes highest possible.
+Last War, the game - a radar task optimizing scheduler process. Right away I need to apologize for it being so complicated -- this entire thing begs to get implemented into some neat frontend. The goal here is to start working on radar missions at around the time your total amount of tasks on the radar becomes highest possible. We want that moment, where we maximize our harvest to fit our schedule and this is how to do it.
 
 ### The Data
 
-The radar refresh period is 6hours, that is a fixed parameter. The rest is variable and thus this process needs your input.
+The radar refresh period is 6 hours, that is a fixed parameter. The rest is variable and thus this process needs your input.
 
 https://github.com/tillt/radarcalc/blob/main/site/RadarTaskCount.png
 1. Check your current radar period start — when does the radar get new tasks? [Rp]
@@ -22,7 +19,6 @@ https://github.com/tillt/radarcalc/blob/main/site/RadarTaskCount.png
    ![Radar tasks per refresh](https://github.com/tillt/radarcalc/blob/main/site/TasksPerRefresh.png)
 6. Check your radar level and its current parameters — what is the maximum queue size? [Q]
    ![Radar queue size](https://github.com/tillt/radarcalc/blob/main/site/RadarQueueMax.png)
-
 
 The total amount of radar tasks you can accumulate before you waste (stop accumulating) is the number of tasks it can display at a time plus the number of tasks it can store in the queue. [V+Q].
 
