@@ -61,7 +61,7 @@ Now plugging in some real data to play it all through.
 
 Now we can calculate the optimal setup for now, lets call it c[t0]'. c[t0] is what we see at the moment in contrast to c[t0]' which is what we want to see to make things fit perfectly well.
 
-* => **c[t0]' = (V + Q) - x*N** (we get x from our chosen window above)
+* => **c[t0]' = (V + Q) - x * N** (we get x from our chosen window above)
 * => c[t0]' = (40 + 11) - 4 * 11
 * => c[t0]' = 7
 
@@ -74,3 +74,15 @@ Lets validate that...
 * tomorrow 09:33 -> c[t4] = 65
 * => I am 14 tasks over what I want them to be - I would waste tasks if I did not solve some before 9:33 tomorrow morning.
 * => Ideally, right now I work through all 11 visible tasks and get number of available tasks down to 7 [c[t0] = c[t0]' = 7].
+
+After having calculated the very optimum, there still is a very important thing to keep an eye on. An entirely populated queue and screen will cause the radar task refill timer to stop. That is bad unless you match your actions with that moment. Once everything is full, every second that passes is a lost second for your next refill. Here is a tip from my Alliance buddy mq91; **always make sure you have at least one spot free** - the counter will continue then.
+
+* => **c[t0]'' = (V + Q - 1) - x * N**
+
+Applying mq91's safety just slightly changes the above calculation. Use the above and subtract one task from c[t0]' for getting a useful value. We then land at a  when applying this to the example.
+
+* => c[t0]'' = 6
+
+## More Random Facts on Radar Tasks
+
+- The tasks expire after 8 hours -- do not let good tasks slide even when trying to save for a race
