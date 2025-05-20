@@ -6,7 +6,6 @@ Last War, the game - a radar task optimizing scheduler process. Right away I nee
 
 The radar refresh period is 6 hours, that is a fixed parameter. The rest is variable and thus this process needs your input.
 
-https://github.com/tillt/radarcalc/blob/main/site/RadarTaskCount.png
 1. Check your current radar period start — when does the radar get new tasks? [Rp]
    ![Radar period starts in](https://github.com/tillt/radarcalc/blob/main/site/TimeLeftUntilStart.png)
 2. Check the amount in the queue — how many radar tasks do you currently have in your queue? [q[t1]]
